@@ -1,0 +1,21 @@
+{{ form_start(form) }}
+<div class="row">
+                        <div class="col-md-6 wow bounceInLeft">
+
+                            <div class="form-group">
+                                {{ form_widget(form.capacite, {'attr': {'class': 'form-control input-lg' , 'placeholder':'capacité' }}) }}
+                            </div>
+                            
+                            <div class="form-group">
+                                {{ form_widget(form.localisation, {'attr': {'class': 'form-control input-lg' , 'placeholder':'localisation' }}) }}
+                            </div>
+                           
+                            <div class="col-md-6 wow bounceInRight">
+                            
+                    <button class="btn">{{ button_label|default('Save') }}</button>                    
+                            </div>
+                            
+                            
+ </div>
+   
+{{ form_end(form) }}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        BICYCLE.. Simple .. Clean .. Responsive theme
+    </title>
+    <meta charset="utf-8">
+    <!--CSS-->
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" >
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/animate.css') }}" >
+    <!--Google Fonts-->
+    <link href="{{ asset('https://fonts.googleapis.com/css?family=Playfair+Display') }}" rel="stylesheet">
+    <link href="{{ asset('https://fonts.googleapis.com/css?family=Josefin+Sans') }}" rel="stylesheet">
+</head>
+<body>
+<header class="header" id="HOME">
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+
+
+        <div class="container">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#loso-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <!-- small size logo -->
+                    <img src="{{ asset('images/logobike.png') }}" alt="logo">
+
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="loso-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#HOME" class="nav-item">HOME</a></li>
+                    <li><a href="#about" class="nav-item">ABOUT</a></li>
+                    <li><a href="#performers" class="nav-item">PERFORMERS</a></li>
+                    <li><a href="#timeline" class="nav-item">TIMELINE</a></li>
+                    <li><a href="#numbers" class="nav-item">NUMBERS</a></li>
+                    <li><a href="#contact-us" class="nav-item">CONTACT</a></li>
+                </ul>
+
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+
+
+    <div class="header-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!--Logo-->
+                    <div class="logo text-center">
+                        <img src="{{ asset('images/logobike.png') }}" height="80px" width="80px" class="logoimg" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 wow bounceIn">
+                        <div class="header-text">
+                            <h1>Old Is Gold</h1>
+                            <p>Simple , Clear and Responsive theme for biking sport to help to re-generate it again!</p>
+                        </div>
+                        <div class="header-btns">
+                            <a href="#about">
+                                <i class="fa fa-angle-down wow bounceInUp"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row"></div>
+        </div>
+    </div>
+</header>
+<!--Section About-->
+<section id="contact-us">
+    
+        
+            <section id="numbers">
+            <div class="numbers-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="section-title">Vélos reservés</h2>
+                          
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section-wrapper">
+                    <div class="container">
+                           {% for reservation in reservations %}
+                            <div class="col-md-3">
+                                <div class="num-data block-inline">
+                                    <i class="fa fa-bicycle fa-5x"></i>
+                                    <div class="counter">{{ reservation.id }}</div>
+                                    <p>{{ reservation.getDateDebut() ? reservation.getDateDebut()|date('Y-m-d ') : '' }}</p>
+                                  
+                                    <p>{{ reservation.getDateFin() ? reservation.getDateFin()|date('Y-m-d ') : ''  }}</p>
+                                    <div class="btn btn-primary btn-block input-lg">
+                                    <a href="{{ path('app_reservations_edit', {'id': reservation.id})  }}">Modifier</a>
+                                         </div> 
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                 
+            </div>
+        </section>
+<div class="container">
+            <div class="row">
+                <div class="col-md-12 wow bounceInDown">
+                    <h2 class="section-title">Reserver votre vélo</h2>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="section-wrapper">
+            <div class="container">
+                {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+                    <div class="row">
+                        <div class="col-md-6 wow bounceInLeft">
+
+                            <div class="form-group">
+                                {{ form_widget(form.date_debut, {'attr': {'class': 'form-control input-lg' , 'placeholder':'Date_debut' }}) }}
+                                 <h6 style="color: red"> {{ form_errors(form.date_debut) }} </h6>
+                            </div>
+                           
+                            <div class="form-group">
+                                {{ form_widget(form.date_fin, {'attr': {'class': 'form-control input-lg' , 'placeholder':'date_fin' }}) }}
+                                 <h6 style="color: red"> {{ form_errors(form.date_fin) }} </h6>
+                            </div>
+                            <div class="form-group">
+                                {{ form_widget(form.station, {'attr': {'class': 'form-control input-lg' , 'placeholder':'station' }}) }}
+                                 
+                            </div>
+                            <div class="col-md-6 wow bounceInRight">
+                            
+                            {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary btn-block input-lg' , 'value':'SEND MESSAGE' }}) }}
+                        </div>
+                            
+                    </div>
+                        
+           
+                {{ form_end(form) }}
+            </div>
+            </div>
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="social-icons wow slideInDown">
+                            <ul class="list-unstyled">
+                                <li><a href="#"><i class="fa fa-facebook fa-3x"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter fa-3x"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus fa-3x"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram fa-3x"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="footer">
+    <div class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="footer-text" >Copyright <span class="copyright"> &copy;</span>2017</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="footer-text">Biking Theme</p>
+                </div>
+                <div class="col-md-4">
+                    <p class="footer-text">Brought to you by <span class="usama"><a href="https://www.facebook.com/UsamaElsayed90">Usama Elsayed</a></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="loading-overlay">
+    <div class="sk-cube-grid">
+        <div class="sk-cube sk-cube1"></div>
+        <div class="sk-cube sk-cube2"></div>
+        <div class="sk-cube sk-cube3"></div>
+        <div class="sk-cube sk-cube4"></div>
+        <div class="sk-cube sk-cube5"></div>
+        <div class="sk-cube sk-cube6"></div>
+        <div class="sk-cube sk-cube7"></div>
+        <div class="sk-cube sk-cube8"></div>
+        <div class="sk-cube sk-cube9"></div>
+    </div>
+</section>
+
+
+
+<script src="{{ asset('js/jquery.js') }} " > </script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/plugins.js') }} "></script>
+<script src="{{ asset('js/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
+<script src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
+<script src="{{ asset('js/wow.min.js') }}"></script>
+<script>new WOW().init();</script>
+</body>
+</html>

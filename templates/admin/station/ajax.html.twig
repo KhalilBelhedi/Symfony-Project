@@ -1,0 +1,44 @@
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+	
+	<div class="card-body">
+		<div class="table-responsive">
+
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Capacite</th>
+						<th>Localisation</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for station in stations %}
+						<tr>
+							<td>{{ station.id }}</td>
+							<td>{{ station.capacite }}</td>
+							<td>{{ station.localisation }}</td>
+							<td>
+								<a class="btn" href="{{ path('app_station_show', {'id': station.id}) }}">Afficher </a>
+								<a class="btn" href="{{ path('app_station_edit', {'id': station.id}) }}">Modifier </a>
+							</td>
+						</tr>
+					
+					{% endfor %}
+				</tbody>
+			
+			<!-- Begin Page Content -->
+
+
+			<a class="btn" href="{{ path('app_station_new') }}">Ajouter Station</a>
+
+		</tbody>
+
+
+	</table>
+</div></div></div></div>
+
+	
